@@ -1,0 +1,4 @@
+#filename=desired-id
+MP Pipeline=workflows-eubcc-mp_pipeline-1.0
+ML Pipeline=workflows-eubcc-ml_pipeline-1.0
+NJ Pipeline=workflows-eubcc-nj_pipeline-1.0

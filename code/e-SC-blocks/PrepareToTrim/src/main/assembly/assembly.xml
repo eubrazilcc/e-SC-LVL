@@ -1,0 +1,95 @@
+<!--
+  e-Science Central
+  Copyright (C) 2008-2013 School of Computing Science, Newcastle University
+
+  This program is free software; you can redistribute it and/or
+  modify it under the terms of the GNU General Public License
+  version 2 as published by the Free Software Foundation at:
+  http://www.gnu.org/licenses/gpl-2.0.html
+
+  This program is distributed in the hope that it will be useful,
+  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  GNU General Public License for more details.
+
+  You should have received a copy of the GNU General Public License
+  along with this program; if not, write to the Free Software
+  Foundation, Inc., 51 Franklin Street, 5th Floor, Boston, MA 02110-1301, USA.
+-->
+<assembly>
+    <id>dist</id>
+    <includeBaseDirectory>false</includeBaseDirectory>
+    <baseDirectory>src</baseDirectory>
+    <formats>
+        <format>zip</format>
+    </formats>
+    <fileSets>
+        <fileSet>
+            <directory>src/main/resources</directory>
+            <outputDirectory>/</outputDirectory>
+            <includes>
+                <include>*.*</include>
+            </includes>
+        </fileSet>
+        <!-- Include the source -->
+        <fileSet>
+            <directory>src/main/java</directory>
+            <outputDirectory>/src</outputDirectory>
+            <includes>
+                <include>**/*.java</include>
+            </includes>
+        </fileSet>
+        <!-- include the classes in a classes subdirectory -->
+        <fileSet>
+            <directory>target/classes</directory>
+            <outputDirectory>/classes</outputDirectory>
+            <includes>
+                <include>**/*.class</include>
+                <include>**/*.properties</include>
+            </includes>
+        </fileSet>
+        <fileSet>
+            <directory>src/main/lib</directory>
+            <outputDirectory>/lib</outputDirectory>
+            <includes>
+                <include>**/*</include>
+            </includes>
+        </fileSet>
+
+        <!-- This is necessary to create an empty scripts directory in the jar file if nothing has been
+        included in the scripts directory. The hack is to copy a directory which has some content but
+        exclude eveything. -->
+        <fileSet>
+            <directory>src/main/assembly</directory>
+            <outputDirectory>/lib</outputDirectory>
+            <directoryMode>0755</directoryMode>
+            <excludes>
+                <exclude>*</exclude>
+            </excludes>
+        </fileSet>
+    </fileSets>
+
+    <!-- Copy all runtime dependencies to the lib directory -->
+    <dependencySets>
+        <dependencySet>
+            <outputDirectory>/lib</outputDirectory>
+            <useProjectArtifact>false</useProjectArtifact>
+            <unpack>false</unpack>
+            <scope>runtime</scope>
+        </dependencySet>
+        
+        <!-- Copy in any additional dependencies into the /lib directory -->
+        <!--
+        <dependencySet>
+            <outputDirectory>/lib</outputDirectory>
+            <useProjectArtifact>false</useProjectArtifact>
+            <unpack>false</unpack>
+            <includes>
+                <include>org.apache.commons:commons-math3:*:3.0</include>
+            </includes>
+            <scope>compile</scope>
+        </dependencySet>           
+        -->
+    </dependencySets>
+
+</assembly>

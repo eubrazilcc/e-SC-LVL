@@ -1,0 +1,125 @@
+<!--
+  e-Science Central
+  Copyright (C) 2008-2013 School of Computing Science, Newcastle University
+
+  This program is free software; you can redistribute it and/or
+  modify it under the terms of the GNU General Public License
+  version 2 as published by the Free Software Foundation at:
+  http://www.gnu.org/licenses/gpl-2.0.html
+
+  This program is distributed in the hope that it will be useful,
+  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  GNU General Public License for more details.
+
+  You should have received a copy of the GNU General Public License
+  along with this program; if not, write to the Free Software
+  Foundation, Inc., 51 Franklin Street, 5th Floor, Boston, MA 02110-1301, USA.
+-->
+<library>
+    <type>BinaryLibrary</type>
+    <!-- The exact version is 0.7.5a -->
+    <name>ClustalW-2.1</name>
+
+    <!-- List of commands that this library contains -->
+    <!-- OS can be linux,osx or windows              -->
+    <!-- There can be multiple sets of commands one  -->
+    <!-- for each supported operating system. The    -->
+    <!-- engine will pick the appropriate one        -->
+    <commands os="linux">
+        <command>
+            <!-- Command name -->
+            <name>clustalw</name>
+            <!-- Location of command relative to library base -->
+            <cmd>lib/linux-x64/clustalw2</cmd>
+            <!-- Is this command an absolute reference to a file -->
+            <absolute>false</absolute>
+        </command>
+    </commands>
+
+    <!--
+    <commands os="osx">
+        <command>
+            <name></name>
+            <cmd></cmd>
+            <absolute></absolute>
+        </command>
+    </commands>
+    -->
+
+    <!--commands os="windows">
+        <command>
+            <name>bwa</name>
+            <cmd>lib/windows/bwa.exe</cmd>
+            <absolute>false</absolute>
+        </command>
+    </commands-->
+
+    <!-- Commands with no os flag are universal -->
+    <!--
+    <commands>
+        <command>
+            <name></name>
+            <cmd></cmd>
+            <absolute></absolute>
+        </command>
+    </commands>    
+    -->
+    
+    <!-- List of packages that need to be installed -->
+    <!-- There can be multiple sets of packages one for each package manager -->
+    <!-- Installer can be macports,apt or yum and the engine will pick the   -->
+    <!-- correct one for the machine it is running on                        -->
+    <!--
+    <packages installer="macports">
+        <package>
+            <name></name>
+            <args></args>
+        </package>
+    </packages>    
+    -->
+    
+    <!--
+    <packages installer="apt">
+        <package>
+            <name></name>
+            <args></args>
+        </package>
+    </packages>   
+    
+    <packages installer="yum">
+        <package>
+            <name></name>
+            <args></args>
+        </package>
+    </packages>      
+    -->
+    
+    <!-- List of commands to run after the library has installed -->
+    <!-- These are relative to the installed/unpacked library    -->
+    <!-- directory so /bin/cmd would run a command from the bin  -->
+    <!-- subdirectory of the library                             -->
+    <postinstall>
+        <!--
+        <exec></exec>
+        -->
+    </postinstall>
+    
+    <!-- List of files to make executable -->
+    <executables>
+        <!-- Make everything in the /bin directory executable -->
+        <dir path="lib/linux-x64" />
+    </executables>
+
+    <!-- Relocate library to a new location -->
+    <!--
+    <relocate>/workflow/static/newdirectory</relocate>
+    -->
+
+    <!-- Extra properties of library that can be read by code -->
+    <properties>
+        <!--
+            <property name="name" value="value"/>
+        -->
+    </properties>
+</library>

@@ -1,0 +1,13 @@
+@ECHO OFF
+
+SET
+
+:: Prepare temporary file name
+:MKTEMP
+SET /a OUTFILE=%RANDOM%+100000
+SET OUTFILE=output-%OUTFILE:~5%
+IF EXIST %OUTFILE% GOTO MKTEMP
+
+SET > %OUTFILE%
+
+ECHO %OUTFILE% >> %OUTPUTS__output_file%

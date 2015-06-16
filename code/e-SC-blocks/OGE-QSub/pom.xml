@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  e-Science Central
+  Copyright (C) 2008-2013 School of Computing Science, Newcastle University
+
+  This program is free software; you can redistribute it and/or
+  modify it under the terms of the GNU General Public License
+  version 2 as published by the Free Software Foundation at:
+  http://www.gnu.org/licenses/gpl-2.0.html
+
+  This program is distributed in the hope that it will be useful,
+  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  GNU General Public License for more details.
+
+  You should have received a copy of the GNU General Public License
+  along with this program; if not, write to the Free Software
+  Foundation, Inc., 51 Franklin Street, 5th Floor, Boston, MA 02110-1301, USA.
+--><project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+    <artifactId>workflow-blocks</artifactId>
+    <groupId>eu.eubrazilcloudconnect.esc</groupId>
+    <version>1.0</version>
+  </parent>
+    <groupId>eu.eubrazilcloudconnect.esc</groupId>
+    <artifactId>OGE-QSub</artifactId>
+    <version>1.0-SNAPSHOT</version>
+    <packaging>jar</packaging>
+
+    <name>${project.artifactId}</name>
+    <url>http://www.esciencecentral.co.uk</url>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <maven.compiler.source>1.7</maven.compiler.source>
+        <maven.compiler.target>1.7</maven.compiler.target>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.connexience</groupId>
+            <artifactId>workflow-engine</artifactId>
+            <version>3.1-SNAPSHOT</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.connexience</groupId>
+            <artifactId>server-common</artifactId>
+            <version>3.1-SNAPSHOT</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.jcraft</groupId>
+            <artifactId>jsch</artifactId>
+            <version>0.1.52</version>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.0</version>
+            </plugin>
+
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>properties-maven-plugin</artifactId>
+                <version>1.0-alpha-2</version>
+                <executions>
+                    <execution>
+                        <phase>initialize</phase>
+                        <goals>
+                            <goal>read-project-properties</goal>
+                        </goals>
+                        <configuration>
+                            <files>
+                                <file>${user.home}/.inkspot/maven.props</file>
+                            </files>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <plugin>
+                <artifactId>maven-assembly-plugin</artifactId>
+                <configuration>
+                    <descriptors>
+                        <descriptor>src/main/assembly/assembly.xml</descriptor>
+                    </descriptors>
+                </configuration>
+                <!-- Attach the assembly creation to the packaging phase.  Goal = attached creates jar -->
+                <executions>
+                    <execution>
+                        <id>make-assembly</id>
+                        <phase>install</phase>
+                        <goals>
+                            <goal>single</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <plugin>
+                <groupId>com.connexience</groupId>
+                <artifactId>upload-plugin</artifactId>
+                <version>3.1-SNAPSHOT</version>
+                <configuration>
+                    <id>${project.groupId}.${project.artifactId}-${project.version}</id>
+                    <!-- Upload location on web sever -->
+                    <context>/workflow</context>
+                    <!-- The type of object to upload: either 'service' or 'library' -->
+                    <objectType>service</objectType>
+                    <!-- Full path of folder in e-Science Central to upload the object to.  This needs to exist in e-SC
+                    beforehand.  e.g. /services/test-->
+                    <folderPath>/Services</folderPath>
+                    <!-- URL of the e-SC API Server e.g. http://www.esciencecentral.co.uk/APIServer -->
+                    <serverURL>${serverURL}</serverURL>
+                    <!-- Your username in e-SC -->
+                    <username>${username}</username>
+                    <!-- Your password in e-SC -->
+                    <password>${password}</password>
+                    <!-- Don't upload during release todo: remove me-->
+                    <doUpload>true</doUpload>
+                </configuration>
+                <executions>
+                    <execution>
+                        <phase>install</phase>
+                        <goals>
+                            <goal>upload</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+
+    <repositories>
+        <repository>
+            <id>e-ScienceCentral Repository</id>
+            <name>e-ScienceCentral Repository</name>
+            <url>http://esciencecentral.co.uk/artifactory/libs-release-local</url>
+        </repository>
+    </repositories>
+
+    <pluginRepositories>
+        <pluginRepository>
+            <id>e-ScienceCentral Repository</id>
+            <name>e-ScienceCentral Repository</name>
+            <url>http://www.esciencecentral.co.uk/artifactory/libs-release-local</url>
+        </pluginRepository>
+    </pluginRepositories>
+</project>

@@ -1,0 +1,133 @@
+<!--
+  e-Science Central
+  Copyright (C) 2008-2013 School of Computing Science, Newcastle University
+
+  This program is free software; you can redistribute it and/or
+  modify it under the terms of the GNU General Public License
+  version 2 as published by the Free Software Foundation at:
+  http://www.gnu.org/licenses/gpl-2.0.html
+
+  This program is distributed in the hope that it will be useful,
+  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  GNU General Public License for more details.
+
+  You should have received a copy of the GNU General Public License
+  along with this program; if not, write to the Free Software
+  Foundation, Inc., 51 Franklin Street, 5th Floor, Boston, MA 02110-1301, USA.
+-->
+<WorkflowService>
+    <!-- Name of the service, and also the caption that will appear     -->
+    <!-- in the top line of the block on the workflow editor            -->
+    <Name>Phylip-Dnapars</Name>
+
+    <!-- Service description that appears at the bottom of the editor   -->
+    <!-- window when the block is selected                              -->
+    <Description>DNA parsimony algorithm.</Description>
+
+    <!-- Category to place the service in on the editor palette         -->
+    <Category>LVL.Phylip</Category>
+
+    <!-- Homepage for block documentation                               -->
+    <Homepage>/</Homepage>
+
+    <!-- Class name of the service. This needs to extend either the     -->
+    <!-- DataProcessorService or the CloudDataProcessorService object   -->
+    <ServiceRoutine>eu.eubrazilcloudconnect.lvl.Phylip.Dnapars</ServiceRoutine>
+
+    <!-- Auto deployed service. Do NOT change for dynamically deployed  -->
+    <!-- services that are uploaded via this editor                     -->
+    <ServiceType>AUTO</ServiceType>
+
+    <!-- Data streaming mode for this service. This can be one of:      -->
+    <!--                                                                -->
+    <!-- nostream   - Data is passed in one block through service       -->
+    <!-- sequential - Data is streamed one connection at a time         -->
+    <!-- parallel   - Data is streamed from all connections in parallel -->
+    <StreamMode>nostream</StreamMode>
+    
+    <!-- Editable service parameters. These properties define what is   -->
+    <!-- displayed in the properties panel when a block is selected in  -->
+    <!-- the workflow editor. The format of properties is:              -->
+    <!--                                                                -->
+    <!-- <Property name="" type="" description="" default=""/>          -->
+    <!--                                                                -->
+    <!-- A list of options is supported for Text and numerical          -->
+    <!-- properties, so adding options="A,B,C" will show a drop down    -->
+    <!-- list in the editor. The values in options are comma delimited  -->
+    <!--                                                                -->
+    <!--                                                                -->
+    <!-- Where:  name = property name without spaces                    -->
+    <!--         type = Document - file reference                       -->
+    <!--                Folder - folder reference                       -->
+    <!--                Integer - integer paramater                     -->
+    <!--                Boolean - true / false value                    -->
+    <!--                String - text parameter                         -->
+    <!--                Double - floating point value                   -->
+    <!--                Date - java date parameter                      -->
+    <!--                Project - Project / Study object             -->
+    <!--                StringList - an array of text values. Use JSON  -->
+    <!--                    notation to input the default value, e.g.   -->
+    <!--                            default='["A", "B", 3]'             -->
+    <!--                    will result in a list with three text       -->
+    <!--                    values: A, B, 3                             -->
+    <!--                    NOTE: JSON uses the double quotes (") to    -->
+    <!--                    delimit text values, thus it is best to     -->
+    <!--                    delimit the default value with single       -->
+    <!--                    quotes (').                                 -->
+    <!--                TwoColumnList - two columns of text values. Use -->
+    <!--                    JSON notation to input the default value.   -->
+    <!--                    The value is represented a JSON array of    -->
+    <!--                    arrays, e.g.                                -->
+    <!--                            default='[["A", 1], ["B", "C"]]'    -->
+    <!--                    will result in a list with two pairs of     -->
+    <!--                    text values.                                -->
+    <!--                ServerObject - an arbitrary object that the user-->
+    <!--                    has access to. The class name used for      -->
+    <!--                    searching is set in the default attribute.  -->
+    <Properties>
+        <Property name="Jumble number" default="0" type="Integer"
+                  description="The number of times to jumble the input data; set to 0 to use input order." />
+        <Property name="Random number seed" default="-1" type="Integer"
+                  description="Random number seed must be odd. Used only if option 'Jumble number' is greater than 0. Leave blank to use a pseudrandomly generated seed which will be reported in the block's output." />
+        <Property name="Outgroup root" default="0" type="Integer" />
+        <Property name="Multiple data sets" default="NO" options="NO,MULTIPLE_WEIGHTS,MULTIPLE_DATASETS" type="String" />
+        <Property name="Number of data sets" default="0" type="Integer"
+                  description="Use together with option 'Multiple data sets' to set the number of data sets / data weights to analyse." />
+
+        <Property name="DebugMode" default="false" type="Boolean" category="Debugging" description="" />
+        <Property name="DebugSuspended" default="true" type="Boolean" category="Debugging" description="" />
+        <Property name="DebugPort" default="5005" type="Integer" category="Debugging" description="" />
+    </Properties>
+
+    <!-- Definition of all of the inputs to a service. The format is:   -->
+    <!--                                                                -->
+    <!-- <Input name="" type="" streaming=""/>                          -->
+    <!--                                                                -->
+    <!-- Where:     name = name of input also displayed on connections  -->
+    <!--            type = data-wrapper - mixed matrix of data          -->
+    <!--                   file-wrapper - list of file names            -->
+    <!--                   object-wrapper - Serialized Java object      -->
+    <!--                   properties-wrapper - List of name-value pairs-->
+    <!--                   link-wrapper - Reference to server documents -->
+    <!--            streaming = true / false - is this a streaming link -->
+    <!--            optional=true|false is this an optional input       -->
+    <Inputs>
+        <Input name="input-phylip" type="file-wrapper" streaming="false"/>
+    </Inputs>
+
+    <!-- Definition of all of the outputs from service. The format is:  -->
+    <!--                                                                -->
+    <!-- <Output name="" type="" streaming=""/>                         -->
+    <!--                                                                -->
+    <!-- Where:     name = name of input also displayed on connections  -->
+    <!--            type = data-wrapper - mixed matrix of data          -->
+    <!--                   file-wrapper - list of file names            -->
+    <!--                   object-wrapper - Serialized Java object      -->
+    <!--            streaming = true / false - is this a streaming link -->
+    <Outputs>
+        <Output name="analysis-files" type="file-wrapper" streaming="false"/>
+        <Output name="tree-files" type="file-wrapper" streaming="false"/>
+    </Outputs>
+
+</WorkflowService>
