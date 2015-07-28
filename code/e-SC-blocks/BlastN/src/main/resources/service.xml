@@ -33,7 +33,8 @@
 
     <!-- Class name of the service. This needs to extend either the     -->
     <!-- DataProcessorService or the CloudDataProcessorService object   -->
-    <ServiceRoutine>CmdLineWrapper</ServiceRoutine>
+    <!--ServiceRoutine>CmdLineWrapper</ServiceRoutine-->
+    <ServiceRoutine>com.connexience.server.workflow.cloud.services.ShellDataProcessorService</ServiceRoutine>
 
     <!-- Auto deployed service. Do NOT change for dynamically deployed  -->
     <!-- services that are uploaded via this editor                     -->

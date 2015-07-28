@@ -36,15 +36,64 @@
         <makePublic>true</makePublic>
     </properties>
 
-    <modules>
-        <module>CommonTools</module>
-        <module>ClustalW</module>
-        <module>Phylip</module>
-        <module>PerlLib</module>
-        <module>WineLib</module>
-        <module>MegaCC</module>
-        <module>Blast+</module>
-    </modules>
+    <profiles>
+        <profile>
+            <id>lvl</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+
+            <modules>
+                <module>CommonTools</module>
+                <module>ClustalW</module>
+                <module>Phylip</module>
+                <module>PerlLib</module>
+                <module>WineLib</module>
+                <module>MegaCC</module>
+                <module>Blast+</module>
+            </modules>
+            
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>com.connexience</groupId>
+                        <artifactId>upload-plugin</artifactId>
+                        <version>3.1-SNAPSHOT</version>
+                        <configuration>
+                            <folderPath>/LVL/Libraries</folderPath>
+                            <serverURL>${LVL.serverURL}</serverURL>
+                            <username>${LVL.username}</username>
+                            <password>${LVL.password}</password>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+
+        <profile>
+            <id>pdas</id>
+
+            <modules>
+                <module>OphidiaTerminal</module>
+            </modules>
+
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>com.connexience</groupId>
+                        <artifactId>upload-plugin</artifactId>
+                        <version>3.1-SNAPSHOT</version>
+                        <configuration>
+                            <folderPath>/PDAS/Libraries</folderPath>
+                            <serverURL>${PDAS.serverURL}</serverURL>
+                            <username>${PDAS.username}</username>
+                            <password>${PDAS.password}</password>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
 
     <dependencyManagement>
         <dependencies>
@@ -126,11 +175,11 @@
                         Full path of folder in e-Science Central to upload the object to.  
                         This needs to exist in e-SC beforehand.  e.g. /services/test
                     -->
-                    <folderPath>/LVL/Libraries</folderPath>
-                    <!-- URL of the e-SC API Server e.g. http://www.esciencecentral.co.uk/APIServer -->
-                    <serverURL>${serverURL}</serverURL>
+                    <folderPath>/Libraries</folderPath>
+                    <!-- URL of the e-SC server e.g. http://www.esciencecentral.co.uk -->
+                    <!--serverURL>${serverURL}</serverURL-->
                     <!-- Your username in e-SC -->
-                    <username>${username}</username>
+                    <!--username>${username}</username-->
                     <!-- Your password in e-SC -->
                     <password>${password}</password>
 

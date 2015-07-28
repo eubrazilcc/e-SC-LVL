@@ -2,8 +2,8 @@
 
 call mvn archetype:generate ^
     -DarchetypeGroupId=com.connexience ^
-    -DarchetypeArtifactId=workflow-block-java ^
+    -DarchetypeArtifactId=workflow-library-binary-standalone ^
     -DarchetypeVersion=3.1-SNAPSHOT ^
     -DgroupId=eu.eubrazilcloudconnect.esc ^
-    -DartifactId=BlastN ^
-    -Dversion=1.0-SNAPSHOT ^
+    -DartifactId=OphidiaTerminal ^
+    -Dversion=1.0 ^

@@ -65,7 +65,6 @@
                     <!--                    will be private, whereas an updated block will        -->
                     <!--                    retain its current permissions.                       -->
                     <!-- makePublic>true</makePublic -->
-                    <folderPath>/Libraries</folderPath>
                 </configuration>
             </plugin>
         </plugins>

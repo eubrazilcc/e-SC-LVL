@@ -16,19 +16,71 @@
         <makePublic>true</makePublic>
     </properties>
 
+    <profiles>
+        <profile>
+            <id>lvl</id>
+            <!--activation>
+                <activeByDefault>true</activeByDefault>
+            </activation-->
+
+            <modules>
+                <module>ClustalW</module>
+                <module>Phylip_Seqboot</module>
+                <module>Phylip_Dnapars</module>
+                <module>Phylip_Consense</module>
+                <module>FilterDups</module>
+                <module>MEGA_NJ</module>
+                <module>MEGA_MP</module>
+                <module>MEGA_ML</module>
+                <module>OGE-QSub</module>
+                <module>TrimFASTA</module>
+                <module>PrepareToTrim</module>
+                <module>BlastN</module>
+            </modules>
+
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>com.connexience</groupId>
+                        <artifactId>upload-plugin</artifactId>
+                        <version>3.1-SNAPSHOT</version>
+                        <configuration>
+                            <folderPath>/LVL/Blocks</folderPath>
+                            <serverURL>${LVL.serverURL}</serverURL>
+                            <username>${LVL.username}</username>
+                            <password>${LVL.password}</password>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+
+        <profile>
+            <id>pdas</id>
+
+            <modules>
+            </modules>
+
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>com.connexience</groupId>
+                        <artifactId>upload-plugin</artifactId>
+                        <version>3.1-SNAPSHOT</version>
+                        <configuration>
+                            <folderPath>/PDAS/Libraries</folderPath>
+                            <serverURL>${PDAS.serverURL}</serverURL>
+                            <username>${PDAS.username}</username>
+                            <password>${PDAS.password}</password>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
+
     <modules>
-        <module>ClustalW</module>
-        <module>Phylip_Seqboot</module>
-        <module>Phylip_Dnapars</module>
-        <module>Phylip_Consense</module>
-        <module>FilterDups</module>
-        <module>MEGA_NJ</module>
-        <module>MEGA_MP</module>
-        <module>MEGA_ML</module>
-        <module>OGE-QSub</module>
-        <module>TrimFASTA</module>
-        <module>PrepareToTrim</module>
-        <module>BlastN</module>
+        <module>ShellWrapperTest</module>
     </modules>
 
     <dependencyManagement>
@@ -125,7 +177,7 @@
                         Full path of folder in e-Science Central to upload the object to.  
                         This needs to exist in e-SC beforehand.  e.g. /services/test
                     -->
-                    <folderPath>/LVL/Blocks</folderPath>
+                    <folderPath>/MyServices</folderPath>
                     <!-- URL of the e-SC API Server e.g. http://www.esciencecentral.co.uk/APIServer -->
                     <serverURL>${serverURL}</serverURL>
                     <!-- Your username in e-SC -->
