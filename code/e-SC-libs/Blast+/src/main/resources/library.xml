@@ -143,8 +143,8 @@
     <!-- directory so /bin/cmd would run a command from the bin  -->
     <!-- subdirectory of the library                             -->
     <postinstall>
-        <exec>unzip lib/linux-x64/linux-x64.zip -d lib/linux-x64</exec>
-        <exec stopOnError="false">rm -f lib/linux-x64/linux-x64.zip</exec>
+        <exec>unzip lib/linux-x64/linux-x64-trimmed.zip -d lib/linux-x64</exec>
+        <exec stopOnError="false">rm -f lib/linux-x64/linux-x64-trimmed.zip</exec>
         <!-- Need to change file attributes after the library has been unzipped because lib/linux-x64/bin is created in postinstall -->
         <!-- Beware that to run chmod a+x lib/linux-x64/bin/* you would need to call bash -c "..." -->
         <exec>chmod -R a+x lib/linux-x64/bin</exec>
