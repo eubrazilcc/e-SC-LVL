@@ -43,6 +43,11 @@
             <groupId>uk.ac.ncl.eSC</groupId>
             <artifactId>CommonTools</artifactId>
         </dependency>
+        <dependency>
+            <groupId>eu.eubrazilcloudconnect.esc</groupId>
+            <artifactId>MegaCCTools</artifactId>
+            <version>1.0</version>
+        </dependency>
     </dependencies>
 
     <build>

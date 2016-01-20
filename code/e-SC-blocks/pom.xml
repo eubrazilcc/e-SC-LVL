@@ -79,10 +79,6 @@
         </profile>
     </profiles>
 
-    <modules>
-        <module>ShellWrapperTest</module>
-    </modules>
-
     <dependencyManagement>
         <dependencies>
             <dependency>
@@ -177,7 +173,7 @@
                         Full path of folder in e-Science Central to upload the object to.  
                         This needs to exist in e-SC beforehand.  e.g. /services/test
                     -->
-                    <folderPath>/MyServices</folderPath>
+                    <folderPath>/LVL/Blocks</folderPath>
                     <!-- URL of the e-SC API Server e.g. http://www.esciencecentral.co.uk/APIServer -->
                     <serverURL>${serverURL}</serverURL>
                     <!-- Your username in e-SC -->
@@ -218,11 +214,11 @@
             <url>http://mvnrepository.com/artifact/</url>
         </repository>
 
-        <repository>
+        <!--repository>
             <id>e-ScienceCentral Repository</id>
             <name>e-ScienceCentral Repository</name>
             <url>http://www.esciencecentral.co.uk/artifactory/libs-release-local</url>
-        </repository>
+        </repository-->
 
         <repository>
             <id>blocks-local</id>
@@ -231,10 +227,10 @@
     </repositories>
 
     <pluginRepositories>
-        <pluginRepository>
+        <!--pluginRepository>
             <id>e-ScienceCentral Repository</id>
             <name>e-ScienceCentral Repository</name>
             <url>http://www.esciencecentral.co.uk/artifactory/libs-release-local</url>
-        </pluginRepository>
+        </pluginRepository-->
     </pluginRepositories>
 </project>

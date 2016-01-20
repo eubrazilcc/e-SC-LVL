@@ -33,7 +33,7 @@
 
     <!-- Class name of the service. This needs to extend either the     -->
     <!-- DataProcessorService or the CloudDataProcessorService object   -->
-    <ServiceRoutine>Mega_MP</ServiceRoutine>
+    <ServiceRoutine>eu.eubrazilcloudconnect.esc.megacc.Mega_MP</ServiceRoutine>
 
     <!-- Auto deployed service. Do NOT change for dynamically deployed  -->
     <!-- services that are uploaded via this editor                     -->
@@ -97,6 +97,9 @@
         <Property name="No. of Initial Trees (random addition)" default="10" type="Integer" />
         <Property name="MP Search level" default="1" type="Integer" />
         <Property name="Max No. of Trees to Retain" default="100" type="Integer" />
+
+        <Property name="Stop on error" default="true" type="Boolean" category="Runtime"
+                  description="If set, the block will fail on the first error encountered. Otherwise, it'll keep processing all input files and fail only if all files generate error in MegaCC." />
 
         <Property name="DebugMode" default="false" type="Boolean" category="Debugging" description="" />
         <Property name="DebugSuspended" default="true" type="Boolean" category="Debugging" description="" />

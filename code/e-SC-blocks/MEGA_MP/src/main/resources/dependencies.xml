@@ -32,4 +32,9 @@
         <uselatestversion>true</uselatestversion>
         <runtimeonly>true</runtimeonly>
     </dependency>
+    <dependency>
+        <libraryname>MegaCCTools-1.0</libraryname>
+        <uselatestversion>true</uselatestversion>
+        <runtimeonly>false</runtimeonly>
+    </dependency>
 </dependencies>
